@@ -61,75 +61,75 @@ CSS-анимаций важен, но сам процесс, включающи�
 Для создания кроссбраузерной `@keyframe`-анимации вам необходим код похожий на
 этот (сгенерировано c помощью Stylie)
 
-  .stylie {
-    -moz-animation-name: stylie-transform-keyframes;
-    -moz-animation-duration: 2000ms;
-    -moz-animation-delay: 0ms;
-    -moz-animation-fill-mode: forwards;
-    -moz-animation-iteration-count: infinite;
-    -ms-animation-name: stylie-transform-keyframes;
-    -ms-animation-duration: 2000ms;
-    -ms-animation-delay: 0ms;
-    -ms-animation-fill-mode: forwards;
-    -ms-animation-iteration-count: infinite;
-    -o-animation-name: stylie-transform-keyframes;
-    -o-animation-duration: 2000ms;
-    -o-animation-delay: 0ms;
-    -o-animation-fill-mode: forwards;
-    -o-animation-iteration-count: infinite;
-    -webkit-animation-name: stylie-transform-keyframes;
-    -webkit-animation-duration: 2000ms;
-    -webkit-animation-delay: 0ms;
-    -webkit-animation-fill-mode: forwards;
-    -webkit-animation-iteration-count: infinite;
-    animation-name: stylie-transform-keyframes;
-    animation-duration: 2000ms;
-    animation-delay: 0ms;
-    animation-fill-mode: forwards;
-    animation-iteration-count: infinite;
-  }
-  @-moz-keyframes stylie-transform-keyframes {
-    0% {-moz-transform:translateX(0px) translateY(0px);}
-    100% {-moz-transform:translateX(400px) translateY(0px);}
-  }
-  @-ms-keyframes stylie-transform-keyframes {
-    0% {-ms-transform:translateX(0px) translateY(0px);}
-    100% {-ms-transform:translateX(400px) translateY(0px);}
-  }
-  @-o-keyframes stylie-transform-keyframes {
-    0% {-o-transform:translateX(0px) translateY(0px);}
-    100% {-o-transform:translateX(400px) translateY(0px);}
-  }
-  @-webkit-keyframes stylie-transform-keyframes {
-    0% {-webkit-transform:translateX(0px) translateY(0px);}
-    100% {-webkit-transform:translateX(400px) translateY(0px);}
-  }
-  @keyframes stylie-transform-keyframes {
-    0% {transform:translateX(0px) translateY(0px);}
-    100% {transform:translateX(400px) translateY(0px);}
-  }
+    .stylie {
+      -moz-animation-name: stylie-transform-keyframes;
+      -moz-animation-duration: 2000ms;
+      -moz-animation-delay: 0ms;
+      -moz-animation-fill-mode: forwards;
+      -moz-animation-iteration-count: infinite;
+      -ms-animation-name: stylie-transform-keyframes;
+      -ms-animation-duration: 2000ms;
+      -ms-animation-delay: 0ms;
+      -ms-animation-fill-mode: forwards;
+      -ms-animation-iteration-count: infinite;
+      -o-animation-name: stylie-transform-keyframes;
+      -o-animation-duration: 2000ms;
+      -o-animation-delay: 0ms;
+      -o-animation-fill-mode: forwards;
+      -o-animation-iteration-count: infinite;
+      -webkit-animation-name: stylie-transform-keyframes;
+      -webkit-animation-duration: 2000ms;
+      -webkit-animation-delay: 0ms;
+      -webkit-animation-fill-mode: forwards;
+      -webkit-animation-iteration-count: infinite;
+      animation-name: stylie-transform-keyframes;
+      animation-duration: 2000ms;
+      animation-delay: 0ms;
+      animation-fill-mode: forwards;
+      animation-iteration-count: infinite;
+    }
+    @-moz-keyframes stylie-transform-keyframes {
+      0% {-moz-transform:translateX(0px) translateY(0px);}
+      100% {-moz-transform:translateX(400px) translateY(0px);}
+    }
+    @-ms-keyframes stylie-transform-keyframes {
+      0% {-ms-transform:translateX(0px) translateY(0px);}
+      100% {-ms-transform:translateX(400px) translateY(0px);}
+    }
+    @-o-keyframes stylie-transform-keyframes {
+      0% {-o-transform:translateX(0px) translateY(0px);}
+      100% {-o-transform:translateX(400px) translateY(0px);}
+    }
+    @-webkit-keyframes stylie-transform-keyframes {
+      0% {-webkit-transform:translateX(0px) translateY(0px);}
+      100% {-webkit-transform:translateX(400px) translateY(0px);}
+    }
+    @keyframes stylie-transform-keyframes {
+      0% {transform:translateX(0px) translateY(0px);}
+      100% {transform:translateX(400px) translateY(0px);}
+    }
 
 …и затем вставить эти строчки в ваш CSS-код. Заметим, что это необходимо только
 для одной самой простой анимации. Теперь посмотрим, как создать такую же
 анимацию с помощью модуля `CSSRenderer` библиотеки Rekapi:
 
-  var kapi = new Kapi();
-  var actor = new Kapi.DOMActor(
-      document.getElementsByClass('stylie')[0]);
+    var kapi = new Kapi();
+    var actor = new Kapi.DOMActor(
+        document.getElementsByClass('stylie')[0]);
 
-  kapi.addActor(actor);
-  actor
-    .keyframe(0, {
-        transform: 'translateX(0px) translateY(0px)'});
-    .keyframe(2000, {
-        transform: 'translateX(400px) translateY(0px)'});
+    kapi.addActor(actor);
+    actor
+      .keyframe(0, {
+          transform: 'translateX(0px) translateY(0px)'});
+      .keyframe(2000, {
+          transform: 'translateX(400px) translateY(0px)'});
 
-  // Определяем поддержку @keyframe
-   if (kapi.css.canAnimateWithCSS()) {
-     kapi.css.play();
-   } else {
-     kapi.play();
-   }
+    // Определяем поддержку @keyframe
+     if (kapi.css.canAnimateWithCSS()) {
+       kapi.css.play();
+     } else {
+       kapi.play();
+     }
 
 Rekapi избавляет вам от головной боли с префиксами и позволяя вам единожды
 написать саму анимацию. Если браузер не поддерживает CSS-анимации, Rekapi
@@ -149,6 +149,9 @@ Rekapi избавляет вам от головной боли с префик�
 пользовательский опыт. [Я бы хотел знать][8], как вы используете CSS-
 пререндеринг и, если вы обнаружите ошибки — [сообщите о них][9]. Весёлой 
 анимации!
+
+
+
 
 [1]: http://www.joelambert.co.uk/morf/
 [2]: http://rekapi.com/
